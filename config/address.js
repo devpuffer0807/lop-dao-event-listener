@@ -1,0 +1,7 @@
+const CONTRACT_LIST = {
+  80001: {
+    SHAREHOLDER_DAO: "0x00eCB520dAC0AcBd8507638235a206e9BA8D27f2",
+  },
+};
+
+module.exports = CONTRACT_LIST;
