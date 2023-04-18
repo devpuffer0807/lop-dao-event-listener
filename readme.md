@@ -1,4 +1,4 @@
-# World Enterprise Event Reader
+# LOP DAO Event Reader
 
 This is an event listener to get all transactions event of LOP smart contract transactions.
 All transactions are saved in AWS `DynamoDB` with AWS `Lambada`
