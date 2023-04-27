@@ -22,6 +22,7 @@
     "ethers": "^5.7.2",
     "http": "^0.0.1-security",
     "nodemon": "^2.0.20",
-    "querystring": "^0.2.1"
+    "querystring": "^0.2.1",
+    "winston": "^3.8.2"
   }
 }

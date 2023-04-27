@@ -1,9 +1,10 @@
 const ethers = require("ethers");
 const { getProvider } = require("../utils");
 const getEventListFromABI = require("../utils/getEventListFromABI");
+const logger = require("../logger");
 
 module.exports = class ContractWorker {
-  constructor(chainId, contractAddress, abi) {
+  constructor(chainId, contractAddress, abi, generateApi) {
     this.chainId = chainId;
     this.contractAddress = contractAddress;
 
@@ -15,11 +16,16 @@ module.exports = class ContractWorker {
 
     _eventList.map((eventInfo) => {
       this.contract.on(eventInfo.name, async (...params) => {
-        let eventResult = {};
+        let eventResult = [];
         eventInfo.inputs.map((input, index) => {
-          eventResult[input] = params[index];
+          eventResult.push(params[index]);
         });
-        console.log("===========", eventInfo.name, eventResult);
+
+        try {
+          generateApi[eventInfo.name](eventResult);
+        } catch (e) {
+          logger.error(eventInfo.name, e);
+        }
       });
     });
   }
