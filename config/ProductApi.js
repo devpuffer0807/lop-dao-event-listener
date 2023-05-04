@@ -67,7 +67,7 @@ const ProductApi = {
       const type = "PRODUCT";
       const status = "ACTIVE";
 
-      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-vote?proposalIndex=${proposalIndex}&status=${status}&type=${type}`;
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-set-status?proposalIndex=${proposalIndex}&status=${status}&type=${type}`;
 
       await axios({
         method: "POST",
@@ -86,7 +86,7 @@ const ProductApi = {
       const type = "PRODUCT";
       const status = "CANCELLED";
 
-      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-vote?proposalIndex=${proposalIndex}&status=${status}&type=${type}`;
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-set-status?proposalIndex=${proposalIndex}&status=${status}&type=${type}`;
 
       await axios({
         method: "POST",
