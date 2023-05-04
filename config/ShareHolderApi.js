@@ -9,7 +9,7 @@ const ShareHolderApi = {
       const proposalId = params[2];
       const metadata = params[3];
 
-      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-developer-proposal?proposalIndex=${proposalId}&proposer=${owner}&metadata=${metadata}&amount=${budget}`;
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-shareholder-proposal?proposalIndex=${proposalId}&proposer=${owner}&metadata=${metadata}&amount=${budget}`;
 
       await axios({
         method: "POST",
@@ -17,9 +17,9 @@ const ShareHolderApi = {
         headers: { "Content-Type": "application/json; charset=utf-8" },
       });
       
-      logger.info("Proposal Created", params);
+      logger.info("ShareHolderApi Proposal Created", params);
     } catch (e) {
-      logger.error("Proposal Created Error", params, e);
+      logger.error("ShareHolderApi Proposal Created Error", params, e);
     }
   },
 };
