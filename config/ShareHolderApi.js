@@ -16,10 +16,88 @@ const ShareHolderApi = {
         url: url,
         headers: { "Content-Type": "application/json; charset=utf-8" },
       });
-      
+
       logger.info("ShareHolderApi Proposal Created", params);
     } catch (e) {
       logger.error("ShareHolderApi Proposal Created Error", params, e);
+    }
+  },
+  VoteYes: async function (params) {
+    try {
+      const proposalIndex = params[0];
+      const account = params[1];
+      const type = "SHAREHOLDER";
+      const approve = "YES";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-vote?proposalIndex=${proposalIndex}&account=${account}&type=${type}&approve=${approve}`;
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("ShareHolderApi VoteYes", params);
+    } catch (e) {
+      logger.error("ShareHolderApi VoteYes Error", params, e);
+    }
+  },
+  VoteNo: async function (params) {
+    try {
+      const proposalIndex = params[0];
+      const account = params[1];
+      const type = "SHAREHOLDER";
+      const approve = "NO";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-vote?proposalIndex=${proposalIndex}&account=${account}&type=${type}&approve=${approve}`;
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("ShareHolderApi VoteNo", params);
+    } catch (e) {
+      logger.error("ShareHolderApi VoteNo Error", params, e);
+    }
+  },
+  Activated: async function (params) {
+    try {
+      const proposalIndex = params[0];
+      const type = "SHAREHOLDER";
+      const status = "ACTIVE";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-vote?proposalIndex=${proposalIndex}&status=${status}&type=${type}`;
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("ShareHolderApi Activated", params);
+    } catch (e) {
+      logger.error("ShareHolderApi Activated Error", params, e);
+    }
+  },
+  Cancelled: async function (params) {
+    try {
+      const proposalIndex = params[0];
+      const type = "SHAREHOLDER";
+      const status = "CANCELLED";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-vote?proposalIndex=${proposalIndex}&status=${status}&type=${type}`;
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("ShareHolderApi Cancelled", params);
+    } catch (e) {
+      logger.error("ShareHolderApi Cancelled Error", params, e);
     }
   },
 };
