@@ -8,7 +8,7 @@ const DeveloperApi = {
       const proposalIndex = params[1];
       const metadata = params[2];
       const productId = params[3];
-      const budget = params[3];
+      const budget = Number(params[4]);
 
       const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-developer-proposal?proposalIndex=${proposalIndex}&proposer=${creator}&metadata=${metadata}&productId=${productId}&amount=${budget}`;
 
