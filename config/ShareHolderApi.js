@@ -24,8 +24,8 @@ const ShareHolderApi = {
   },
   VoteYes: async function (params) {
     try {
-      const proposalIndex = params[0];
-      const account = params[1];
+      const account = params[0];
+      const proposalIndex = params[1];
       const type = "SHAREHOLDER";
       const approve = "YES";
 
