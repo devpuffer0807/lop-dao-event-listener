@@ -10,6 +10,11 @@
         "internalType": "address",
         "name": "_productDao",
         "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_stakingAddress",
+        "type": "address"
       }
     ],
     "stateMutability": "nonpayable",
@@ -139,16 +144,22 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
+        "name": "voter",
+        "type": "address"
+      },
+      {
         "indexed": false,
         "internalType": "uint256",
         "name": "escrowId",
         "type": "uint256"
       },
       {
-        "indexed": true,
-        "internalType": "address",
-        "name": "voter",
-        "type": "address"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenAmount",
+        "type": "uint256"
       }
     ],
     "name": "EscrowVoteNo",
@@ -158,19 +169,87 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
+        "name": "voter",
+        "type": "address"
+      },
+      {
         "indexed": false,
         "internalType": "uint256",
         "name": "escrowId",
         "type": "uint256"
       },
       {
-        "indexed": true,
-        "internalType": "address",
-        "name": "voter",
-        "type": "address"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenAmount",
+        "type": "uint256"
       }
     ],
     "name": "EscrowVoteYes",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "staker",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "escrowProposalId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "oldAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "EvaluateEscrowVoteAmount",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "staker",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "proposalId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "oldAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "EvaluateVoteAmount",
     "type": "event"
   },
   {
@@ -273,7 +352,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "_productId",
+        "name": "productId",
         "type": "uint256"
       },
       {
@@ -302,6 +381,25 @@
         "type": "address"
       }
     ],
+    "name": "SetStakingAddress",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "prev",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "next",
+        "type": "address"
+      }
+    ],
     "name": "ShareHolderDaoUpdated",
     "type": "event"
   },
@@ -309,16 +407,22 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
+        "name": "voter",
+        "type": "address"
+      },
+      {
         "indexed": false,
         "internalType": "uint256",
         "name": "proposalId",
         "type": "uint256"
       },
       {
-        "indexed": true,
-        "internalType": "address",
-        "name": "voter",
-        "type": "address"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenAmount",
+        "type": "uint256"
       }
     ],
     "name": "VoteNo",
@@ -328,16 +432,22 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
+        "name": "voter",
+        "type": "address"
+      },
+      {
         "indexed": false,
         "internalType": "uint256",
         "name": "proposalId",
         "type": "uint256"
       },
       {
-        "indexed": true,
-        "internalType": "address",
-        "name": "voter",
-        "type": "address"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenAmount",
+        "type": "uint256"
       }
     ],
     "name": "VoteYes",
@@ -431,7 +541,7 @@
         "type": "uint256"
       }
     ],
-    "name": "escrow",
+    "name": "escrowBudgets",
     "outputs": [
       {
         "internalType": "uint256",
@@ -458,30 +568,6 @@
     "name": "escrowCreateProposal",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "escrowIsVoted",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -529,7 +615,22 @@
       },
       {
         "internalType": "uint256",
+        "name": "voteYesAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
         "name": "voteNo",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "voteNoAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "createdAt",
         "type": "uint256"
       }
     ],
@@ -571,6 +672,76 @@
       }
     ],
     "name": "escrowVoteYes",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "escrowVotingList",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "isVoted",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "voteType",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "voteAmount",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "staker",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "escrowProposalId",
+        "type": "uint256"
+      }
+    ],
+    "name": "evaluateEscrowVoteAmount",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "staker",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "proposalId",
+        "type": "uint256"
+      }
+    ],
+    "name": "evaluateVoteAmount",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -636,30 +807,6 @@
       }
     ],
     "name": "isMember",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "isVoted",
     "outputs": [
       {
         "internalType": "bool",
@@ -791,25 +938,6 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "proposalStatus",
-    "outputs": [
-      {
-        "internalType": "enum Types.ProposalStatus",
-        "name": "",
-        "type": "uint8"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
@@ -839,7 +967,17 @@
       },
       {
         "internalType": "uint256",
+        "name": "voteYesAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
         "name": "voteNo",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "voteNoAmount",
         "type": "uint256"
       },
       {
@@ -850,6 +988,11 @@
       {
         "internalType": "uint256",
         "name": "budget",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "createdAt",
         "type": "uint256"
       }
     ],
@@ -892,11 +1035,11 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_shareHolderDao",
+        "name": "_stakingAddress",
         "type": "address"
       }
     ],
-    "name": "setShareHolderDao",
+    "name": "setStakingAddress",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -904,6 +1047,19 @@
   {
     "inputs": [],
     "name": "shareHolderDao",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "stakingAddress",
     "outputs": [
       {
         "internalType": "address",
@@ -951,6 +1107,40 @@
     "name": "voteYes",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "votingList",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "isVoted",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "voteType",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "voteAmount",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {

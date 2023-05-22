@@ -26,10 +26,11 @@ const ShareHolderApi = {
     try {
       const account = params[0];
       const proposalIndex = params[1];
+      const proposalAmount = params[2];
       const type = "SHAREHOLDER";
       const approve = "YES";
 
-      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-vote?proposalIndex=${proposalIndex}&account=${account}&type=${type}&approve=${approve}`;
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-vote?proposalIndex=${proposalIndex}&account=${account}&type=${type}&approve=${approve}&proposalAmount=${proposalAmount}`;
 
       await axios({
         method: "POST",
@@ -46,10 +47,11 @@ const ShareHolderApi = {
     try {
       const account = params[0];
       const proposalIndex = params[1];
+      const proposalAmount = params[2];
       const type = "SHAREHOLDER";
       const approve = "NO";
 
-      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-vote?proposalIndex=${proposalIndex}&account=${account}&type=${type}&approve=${approve}`;
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-vote?proposalIndex=${proposalIndex}&account=${account}&type=${type}&approve=${approve}&proposalAmount=${proposalAmount}`;
 
       await axios({
         method: "POST",
