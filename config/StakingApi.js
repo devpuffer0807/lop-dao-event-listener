@@ -43,6 +43,47 @@ const StakingApi = {
       logger.error("StakingApi StakeVLop", params, e);
     }
   },
+  WithdrawLop: async function (params) {
+    try {
+      const owner = params[0];
+      const amount = Number(params[1]);
+
+      const type = "LOP";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-withdraw?owner=${owner}&amount=${amount}&type=${type}`;
+      console.log(url);
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("StakingApi WithdrawLop", params);
+    } catch (e) {
+      logger.error("StakingApi WithdrawLop", params, e);
+    }
+  },
+  WithdrawVLop: async function (params) {
+    try {
+      const owner = params[0];
+      const amount = Number(params[1]);
+
+      const type = "vLOP";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-withdraw?owner=${owner}&amount=${amount}&type=${type}`;
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("StakingApi WithdrawVLop", params);
+    } catch (e) {
+      logger.error("StakingApi WithdrawVLop", params, e);
+    }
+  },
 };
 
 module.exports = StakingApi;
