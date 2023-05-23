@@ -11,3 +11,7 @@ module.exports.getDeveloperDaoAddress = () => {
 module.exports.getProductDaoAddress = () => {
   return AddressList[process.env.CHAIN_ID].PRODUCT_DAO;
 };
+
+module.exports.getStakingAddress = () => {
+  return AddressList[process.env.CHAIN_ID].STAKING;
+};

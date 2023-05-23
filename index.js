@@ -2,13 +2,16 @@ require("dotenv").config();
 const ShareHolderDaoABI = require("./abi/ShareHolderDao.json");
 const DeveloperDaoABI = require("./abi/DeveloperDao.json");
 const ProductDaoABI = require("./abi/ProductDao.json");
+const StakingABI = require("./abi/Staking.json");
 const ShareHolderApi = require("./config/ShareHolderApi");
 const DeveloperApi = require("./config/DeveloperApi");
 const ProductApi = require("./config/ProductApi");
+const StakingApi = require("./config/StakingApi");
 const {
   getShareHolderDaoAddress,
   getDeveloperDaoAddress,
-  getProductDaoAddress
+  getProductDaoAddress,
+  getStakingAddress,
 } = require("./utils/getAddress");
 const logger = require("./logger");
 
@@ -33,6 +36,13 @@ new ContractWorker(
   getProductDaoAddress(),
   ProductDaoABI,
   ProductApi
+);
+
+new ContractWorker(
+  process.env.CHAIN_ID,
+  getStakingAddress(),
+  StakingABI,
+  StakingApi
 );
 
 logger.info("LOP event listener is started");
