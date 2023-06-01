@@ -101,6 +101,28 @@ const ProductApi = {
       logger.error("ProductApi Cancelled Error", params, e);
     }
   },
+  EvaluateVoteAmount: async function (params) {
+    try {
+      const staker = params[0];
+      const proposalId = params[1];
+      const oldStakeAmount = Number(params[2]);
+      const newStakeAmount = Number(params[3]);
+      const type = "PRODUCT";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-evaluate?staker=${staker}&proposalId=${proposalId}&newStakeAmount=${newStakeAmount}&type=${type}`;
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("ProductApi EvaluateVoteAmount", params);
+
+    } catch(e){
+      logger.error("ProductApi EvaluateVoteAmount Error", params, e);
+    }
+  }
 };
 
 module.exports = ProductApi;

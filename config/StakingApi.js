@@ -84,6 +84,126 @@ const StakingApi = {
       logger.error("StakingApi WithdrawVLop", params, e);
     }
   },
+  AddShareHolderVotingId: async function (params) {
+    try {
+      const staker = params[0];
+      const proposalId = Number(params[1]);
+
+      const type = "SHAREHOLDER";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-add-voting-id?staker=${staker}&proposalId=${proposalId}&type=${type}`;
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("StakingApi WithdrawVLop", params);
+    } catch (e) {
+      logger.error("StakingApi WithdrawVLop", params, e);
+    }
+  },
+  AddProductVotingId: async function (params) {
+    try {
+      const staker = params[0];
+      const proposalId = Number(params[1]);
+
+      const type = "PRODUCT";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-add-voting-id?staker=${staker}&proposalId=${proposalId}&type=${type}`;
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("StakingApi WithdrawVLop", params);
+    } catch (e) {
+      logger.error("StakingApi WithdrawVLop", params, e);
+    }
+  },
+  AddDevelopmentVotingId: async function (params) {
+    try {
+      const staker = params[0];
+      const proposalId = Number(params[1]);
+
+      const type = "DEVELOPER";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-add-voting-id?staker=${staker}&proposalId=${proposalId}&type=${type}`;
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("StakingApi WithdrawVLop", params);
+    } catch (e) {
+      logger.error("StakingApi WithdrawVLop", params, e);
+    }
+  },
+  RemoveShareHolderVotingId: async function (params) {
+    try {
+      const staker = params[0];
+      const proposalId = Number(params[1]);
+
+      const type = "SHAREHOLDER";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-remove-voting-id?staker=${staker}&proposalId=${proposalId}&type=${type}`;
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("StakingApi WithdrawVLop", params);
+    } catch (e) {
+      logger.error("StakingApi WithdrawVLop", params, e);
+    }
+  },
+  RemoveProductVotingId: async function (params) {
+    try {
+      const staker = params[0];
+      const proposalId = Number(params[1]);
+
+      const type = "PRODUCT";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-remove-voting-id?staker=${staker}&proposalId=${proposalId}&type=${type}`;
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("StakingApi WithdrawVLop", params);
+    } catch (e) {
+      logger.error("StakingApi WithdrawVLop", params, e);
+    }
+  },
+  RemoveDevelopmentVotingId: async function (params) {
+    try {
+      const staker = params[0];
+      const proposalId = Number(params[1]);
+
+      const type = "DEVELOPER";
+
+      const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-remove-voting-id?staker=${staker}&proposalId=${proposalId}&type=${type}`;
+
+      await axios({
+        method: "POST",
+        url: url,
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+      });
+
+      logger.info("StakingApi WithdrawVLop", params);
+    } catch (e) {
+      logger.error("StakingApi WithdrawVLop", params, e);
+    }
+  },
 };
 
 module.exports = StakingApi;
