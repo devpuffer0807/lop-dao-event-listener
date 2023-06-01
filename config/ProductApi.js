@@ -23,9 +23,9 @@ const ProductApi = {
   },
   VoteYes: async function (params) {
     try {
-      const proposalIndex = params[0];
-      const account = params[1];
-      const proposalAmount = params[2];
+      const account = params[0];
+      const proposalIndex = Number(params[1]);
+      const proposalAmount = Number(params[2]);
       const type = "PRODUCT";
       const approve = "YES";
 
@@ -44,9 +44,9 @@ const ProductApi = {
   },
   VoteNo: async function (params) {
     try {
-      const proposalIndex = params[0];
-      const account = params[1];
-      const proposalAmount = params[2];
+      const account = params[0];
+      const proposalIndex = Number(params[1]);
+      const proposalAmount = Number(params[2]);
       const type = "PRODUCT";
       const approve = "NO";
 
