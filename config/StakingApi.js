@@ -26,7 +26,9 @@ const StakingApi = {
   StakeVLop: async function (params) {
     try {
       const owner = params[0];
-      const amount = Number(params[1]);
+      let amount = Number(params[1]);
+      amount = parseFloat(amount).toLocaleString();
+      amount = amount.replace(/,/g, "");
 
       const type = "vLOP";
 
@@ -46,7 +48,9 @@ const StakingApi = {
   WithdrawLop: async function (params) {
     try {
       const owner = params[0];
-      const amount = Number(params[1]);
+      let amount = Number(params[1]);
+      amount = parseFloat(amount).toLocaleString();
+      amount = amount.replace(/,/g, "");
 
       const type = "LOP";
 
@@ -67,7 +71,9 @@ const StakingApi = {
   WithdrawVLop: async function (params) {
     try {
       const owner = params[0];
-      const amount = Number(params[1]);
+      let amount = Number(params[1]);
+      amount = parseFloat(amount).toLocaleString();
+      amount = amount.replace(/,/g, "");
 
       const type = "vLOP";
 

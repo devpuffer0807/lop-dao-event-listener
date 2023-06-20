@@ -8,7 +8,9 @@ const DeveloperApi = {
       const proposalIndex = params[1];
       const metadata = params[2];
       const productId = params[3];
-      const budget = Number(params[4]);
+      let budget = Number(params[4]);
+      budget = parseFloat(budget).toLocaleString();
+      budget = budget.replace(/,/g, "");
 
       const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-developer-proposal?proposalIndex=${proposalIndex}&proposer=${creator}&metadata=${metadata}&productId=${productId}&amount=${budget}`;
 
@@ -108,7 +110,9 @@ const DeveloperApi = {
       const staker = params[0];
       const proposalId = params[1];
       const oldStakeAmount = Number(params[2]);
-      const newStakeAmount = Number(params[3]);
+      let newStakeAmount = Number(params[3]);
+      newStakeAmount = parseFloat(newStakeAmount).toLocaleString();
+      newStakeAmount = newStakeAmount.replace(/,/g, "");
       const type = "DEVELOPER";
 
       const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-evaluate?staker=${staker}&proposalId=${proposalId}&newStakeAmount=${newStakeAmount}&type=${type}`;
@@ -120,11 +124,10 @@ const DeveloperApi = {
       });
 
       logger.info("DeveloperApi EvaluateVoteAmount", params);
-
-    } catch(e){
+    } catch (e) {
       logger.error("DeveloperApi EvaluateVoteAmount Error", params, e);
     }
-  }
+  },
 };
 
 module.exports = DeveloperApi;

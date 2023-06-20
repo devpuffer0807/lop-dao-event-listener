@@ -107,7 +107,9 @@ const ShareHolderApi = {
       const staker = params[0];
       const proposalId = params[1];
       const oldStakeAmount = Number(params[2]);
-      const newStakeAmount = Number(params[3]);
+      let newStakeAmount = Number(params[3]);
+      newStakeAmount = parseFloat(newStakeAmount).toLocaleString();
+      newStakeAmount = newStakeAmount.replace(/,/g, "");
       const type = "SHAREHOLDER";
 
       const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-evaluate?staker=${staker}&proposalId=${proposalId}&newStakeAmount=${newStakeAmount}&type=${type}`;

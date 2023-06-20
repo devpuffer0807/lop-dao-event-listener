@@ -25,7 +25,10 @@ const ProductApi = {
     try {
       const account = params[0];
       const proposalIndex = Number(params[1]);
-      const proposalAmount = Number(params[2]);
+      let proposalAmount = Number(params[2]);
+      proposalAmount = parseFloat(proposalAmount).toLocaleString();
+      proposalAmount = proposalAmount.replace(/,/g, "");
+
       const type = "PRODUCT";
       const approve = "YES";
 
@@ -46,7 +49,9 @@ const ProductApi = {
     try {
       const account = params[0];
       const proposalIndex = Number(params[1]);
-      const proposalAmount = Number(params[2]);
+      let proposalAmount = Number(params[2]);
+      proposalAmount = parseFloat(proposalAmount).toLocaleString();
+      proposalAmount = proposalAmount.replace(/,/g, "");
       const type = "PRODUCT";
       const approve = "NO";
 
@@ -106,7 +111,9 @@ const ProductApi = {
       const staker = params[0];
       const proposalId = params[1];
       const oldStakeAmount = Number(params[2]);
-      const newStakeAmount = Number(params[3]);
+      let newStakeAmount = Number(params[3]);
+      newStakeAmount = parseFloat(newStakeAmount).toLocaleString();
+      newStakeAmount = newStakeAmount.replace(/,/g, "");
       const type = "PRODUCT";
 
       const url = `https://gf2tbjvl4f.execute-api.us-east-1.amazonaws.com/lop-event-processor/lop-evaluate?staker=${staker}&proposalId=${proposalId}&newStakeAmount=${newStakeAmount}&type=${type}`;
